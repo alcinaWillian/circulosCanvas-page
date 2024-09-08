@@ -51,24 +51,14 @@ DESCRIÇÃO: Circulos se movimentam em direção um ao outro.>
 
         function updateGameArea() {
             myGameArea.clear();
+            
             circuloAmarelo.update();
             circuloAmarelo.x += 2.4;
             circuloAmarelo.y += 1.35;
+
             circuloAzul.update();
             circuloAzul.x -= 2.4;
             circuloAzul.y -= 1.35;
-
-            if (yellowCircle.x >= 240 && yellowCircle.y >= 135) {
-                yellowCircle.x = 2.4;  
-                yellowCircle.y = -1.35;
-            }
-
-
-            if (blueCircle.x <= 240 && blueCircle.y <= 135) {
-                blueCircle.x = -2.4;
-                blueCircle.y = 1.35;
-            }
-
         }
     </script>
 </head>
