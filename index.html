@@ -1,0 +1,77 @@
+<!DOCTYPE html
+Programa: Circulos se movendo
+Nome: Willian - Nº: 35 - Turma: 2B
+DESCRIÇÃO: Circulos se movimentam em direção um ao outro.>
+<html lang="pt-BR">
+<head>
+    <title>Círculos se Movendo</title>
+    <meta charset="UTF-8">
+    <style>
+        canvas {
+            border: 1px solid #d3d3d3;
+            background-color: #A0A0A0;
+        }
+    </style>
+    <script type="text/javascript">
+        var circuloAmarelo, circuloAzul;
+
+        function startGame() {
+            circuloAmarelo = new component(25, "yellow", 0, 0);
+            circuloAzul = new component(25, "blue", 480, 270); 
+            myGameArea.start();
+        }
+
+        var myGameArea = {
+            canvas : document.createElement("canvas"),
+            start : function() {
+                this.canvas.width = 480;
+                this.canvas.height = 270;
+                this.context = this.canvas.getContext("2d");
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                this.interval = setInterval(updateGameArea, 20);
+            },
+            clear : function() {
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            }
+        }
+
+        function component(radius, color, x, y) {
+            this.radius = radius;
+            this.color = color;
+            this.x = x;
+            this.y = y;
+            this.update = function() {
+                var ctx = myGameArea.context;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI); 
+                ctx.fillStyle = color;
+                ctx.fill();
+            };
+        }
+
+        function updateGameArea() {
+            myGameArea.clear();
+            circuloAmarelo.update();
+            circuloAmarelo.x += 2.4;
+            circuloAmarelo.y += 1.35;
+            circuloAzul.update();
+            circuloAzul.x -= 2.4;
+            circuloAzul.y -= 1.35;
+
+            if (yellowCircle.x >= 240 && yellowCircle.y >= 135) {
+                yellowCircle.x = 2.4;  
+                yellowCircle.y = -1.35;
+            }
+
+
+            if (blueCircle.x <= 240 && blueCircle.y <= 135) {
+                blueCircle.x = -2.4;
+                blueCircle.y = 1.35;
+            }
+
+        }
+    </script>
+</head>
+<body onload="startGame();">
+</body>
+</html>
